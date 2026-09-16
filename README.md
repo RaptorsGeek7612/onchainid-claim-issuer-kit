@@ -5,7 +5,7 @@ Kit pour émettre, vérifier et révoquer des claims d'identité conformes au st
 - [`backend/`](backend) — contrats Solidity (Foundry), `ClaimIssuer` porté en solc 0.8.35.
 - [`frontend/`](frontend) — interface Next.js + wagmi/viem/RainbowKit pour signer, vérifier, révoquer et parcourir des claims depuis un wallet connecté (la consultation ne nécessite pas de wallet).
 
-Voir le README de chaque dossier pour les instructions de build/dev, et [`GUIDE.md`](GUIDE.md) pour un guide d'utilisation en 4 étapes (avec exemple concret).
+Voir le README de chaque dossier pour les instructions de build/dev, [`GUIDE.md`](GUIDE.md) pour un guide d'utilisation en 4 étapes (avec exemple concret), et [`AUDIT.md`](AUDIT.md) pour la revue de sécurité interne (l'audit externe reste à faire).
 
 ## Déploiement de test
 
