@@ -9,7 +9,7 @@ Voir le README de chaque dossier pour les instructions de build/dev, et [`GUIDE.
 
 ## Déploiement de test
 
-- **Contrat `ClaimIssuer`** sur Sepolia : [`0x53C91c18D5Ad6f5521dE8434094EF7ed482C304a`](https://sepolia.etherscan.io/address/0x53C91c18D5Ad6f5521dE8434094EF7ed482C304a)
+- **Contrat `ClaimIssuer`** sur Sepolia : [`0x53C91c18D5Ad6f5521dE8434094EF7ed482C304a`](https://sepolia.etherscan.io/address/0x53C91c18D5Ad6f5521dE8434094EF7ed482C304a) — code source vérifié sur [Sourcify](https://repo.sourcify.dev/contracts/full_match/11155111/0x53C91c18D5Ad6f5521dE8434094EF7ed482C304a/) (correspondance exacte)
 - **Frontend** sur Vercel : https://onchainid-claim-issuer-kit.vercel.app (préconfiguré avec l'adresse ci-dessus)
 
 Le frontend n'utilise que le `localStorage` du navigateur (état de connexion wallet). Aucun cookie tiers ni traqueur.

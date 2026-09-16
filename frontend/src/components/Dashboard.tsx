@@ -4,6 +4,7 @@ import { useState } from "react";
 import { isAddress, type Hex } from "viem";
 import { useAccount, useBytecode } from "wagmi";
 import { BrandMark } from "@/components/BrandMark";
+import { BrowseClaims } from "@/components/BrowseClaims";
 import { ConnectWallet } from "@/components/ConnectWallet";
 import { DocumentIcon } from "@/components/icons";
 import { Guide } from "@/components/Guide";
@@ -138,6 +139,7 @@ export function Dashboard() {
 
             <IssueClaimForm />
             <VerifyRevokeClaim claimIssuerAddress={validAddress} />
+            <BrowseClaims />
           </>
         )}
       </main>

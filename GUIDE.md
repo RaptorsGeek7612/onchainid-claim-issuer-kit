@@ -1,6 +1,6 @@
 # Guide d'utilisation
 
-Ce guide explique comment utiliser le [Kit d'émetteur de claims ONCHAINID](README.md) en trois étapes, avec un exemple concret. Le même contenu est disponible dans l'onglet **Guide** de l'application.
+Ce guide explique comment utiliser le [Kit d'émetteur de claims ONCHAINID](README.md) en quatre étapes, avec un exemple concret. Le même contenu est disponible dans l'onglet **Guide** de l'application.
 
 ## 1. Configurer le contrat ClaimIssuer
 
@@ -34,3 +34,7 @@ Remets **exactement** les mêmes valeurs qu'à l'étape 2, puis clique **« Vér
 | Signature | le champ `signature` du JSON |
 
 Pour **révoquer**, connecte le wallet qui détient la clé de management, colle la Signature, et clique **« Révoquer »**. Cette fois, c'est une vraie transaction on-chain (gas requis).
+
+## 4. Parcourir les claims d'une identité
+
+Consultation seule, aucun wallet requis. Renseigne l'adresse du contrat `Identity` (le sujet de la claim, pas le `ClaimIssuer`), choisis le réseau où il est déployé et un topic, puis clique **« Rechercher »** pour lister les claims qu'il détient sur ce sujet.

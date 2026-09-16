@@ -56,3 +56,12 @@ export function LinkIcon({ size = 16 }: IconProps) {
     </svg>
   );
 }
+
+export function SearchIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="M20 20l-4.7-4.7" />
+    </svg>
+  );
+}

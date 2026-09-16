@@ -57,10 +57,22 @@ Via le script `script/DeployClaimIssuer.s.sol` :
 
 ```shell
 $ PRIVATE_KEY=<your_private_key> forge script script/DeployClaimIssuer.s.sol:DeployClaimIssuer \
-    --rpc-url <your_rpc_url> --broadcast --verify
+    --rpc-url <your_rpc_url> --broadcast
 ```
 
 `MANAGEMENT_KEY` (optionnel) — adresse à utiliser comme clé de management initiale ; par défaut, l'adresse du déployeur (dérivée de `PRIVATE_KEY`).
+
+### Verify
+
+Pour publier le code source sur un explorateur après déploiement. Via [Sourcify](https://sourcify.dev/) (gratuit, sans clé API) :
+
+```shell
+$ forge verify-contract <deployed_address> contracts/ClaimIssuer.sol:ClaimIssuer \
+    --verifier sourcify --chain <chain_name_or_id> --guess-constructor-args \
+    --rpc-url <your_rpc_url> --watch
+```
+
+Ou sur Etherscan (nécessite `ETHERSCAN_API_KEY`) en ajoutant `--verifier etherscan` à la place.
 
 ### Cast
 

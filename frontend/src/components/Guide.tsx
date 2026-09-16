@@ -1,4 +1,4 @@
-import { DocumentIcon, ShieldCheckIcon, SignatureIcon } from "@/components/icons";
+import { DocumentIcon, SearchIcon, ShieldCheckIcon, SignatureIcon } from "@/components/icons";
 
 export function Guide() {
   return (
@@ -111,6 +111,22 @@ export function Guide() {
           Pour <strong>révoquer</strong>, connecte le wallet qui détient la clé de management, colle la Signature, et
           clique <strong>&quot;Révoquer&quot;</strong>. Cette fois, c&apos;est une vraie transaction on-chain (gas
           requis).
+        </p>
+      </section>
+
+      <section className="panel">
+        <div className="panel-head">
+          <span className="panel-step">04</span>
+          <span className="panel-icon panel-icon-teal">
+            <SearchIcon />
+          </span>
+          <h2>Parcourir les claims d&apos;une identité</h2>
+        </div>
+        <p className="panel-hint">
+          Consultation seule, aucun wallet requis. Renseigne l&apos;adresse du contrat{" "}
+          <code>Identity</code> (le sujet de la claim, pas le <code>ClaimIssuer</code>), choisis le réseau où
+          il est déployé et un topic, puis clique <strong>&quot;Rechercher&quot;</strong> pour lister les
+          claims qu&apos;il détient sur ce sujet.
         </p>
       </section>
     </div>
