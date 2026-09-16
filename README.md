@@ -3,6 +3,16 @@
 Kit pour émettre, vérifier et révoquer des claims d'identité conformes au standard [ONCHAINID](https://onchainid.com/) (ERC-734/ERC-735).
 
 - [`backend/`](backend) — contrats Solidity (Foundry), `ClaimIssuer` porté en solc 0.8.35.
-- [`frontend/`](frontend) — interface Next.js + wagmi/viem pour signer, vérifier et révoquer des claims depuis un wallet connecté.
+- [`frontend/`](frontend) — interface Next.js + wagmi/viem/RainbowKit pour signer, vérifier et révoquer des claims depuis un wallet connecté.
 
 Voir le README de chaque dossier pour les instructions de build/dev.
+
+Le frontend n'utilise que le `localStorage` du navigateur (état de connexion wallet) — aucun cookie tiers ni traqueur.
+
+## CI
+
+`.github/workflows/ci.yml` — build/lint/test du backend (Foundry) et du frontend (Next.js) sur chaque push/PR.
+
+## Licence
+
+[GPL-3.0](LICENSE), conforme aux en-têtes SPDX des contrats (portés depuis `@onchain-id/solidity`, également GPL-3.0).

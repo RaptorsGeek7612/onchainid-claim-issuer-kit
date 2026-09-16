@@ -15,7 +15,7 @@ export function VerifyRevokeClaim({ claimIssuerAddress }: { claimIssuerAddress?:
   const [formError, setFormError] = useState<string | null>(null);
   const [args, setArgs] = useState<readonly [Hex, bigint, Hex, Hex] | null>(null);
 
-  const { mutate: revoke, data: revokeTxHash, isPending: isRevoking, error: revokeError } = useWriteContract();
+  const { writeContract: revoke, data: revokeTxHash, isPending: isRevoking, error: revokeError } = useWriteContract();
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash: revokeTxHash });
 
   const isValidQuery = useReadContract({

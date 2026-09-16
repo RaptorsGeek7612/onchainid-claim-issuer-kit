@@ -53,11 +53,14 @@ $ anvil
 
 ### Deploy
 
-Pas encore de script de déploiement dans `script/`. Pour déployer manuellement `ClaimIssuer` :
+Via le script `script/DeployClaimIssuer.s.sol` :
 
 ```shell
-$ forge create contracts/ClaimIssuer.sol:ClaimIssuer --rpc-url <your_rpc_url> --private-key <your_private_key> --constructor-args <initial_management_key>
+$ PRIVATE_KEY=<your_private_key> forge script script/DeployClaimIssuer.s.sol:DeployClaimIssuer \
+    --rpc-url <your_rpc_url> --broadcast --verify
 ```
+
+`MANAGEMENT_KEY` (optionnel) — adresse à utiliser comme clé de management initiale ; par défaut, l'adresse du déployeur (dérivée de `PRIVATE_KEY`).
 
 ### Cast
 

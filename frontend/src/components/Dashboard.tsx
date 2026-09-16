@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { isAddress, type Hex } from "viem";
+import { useAccount, useBytecode } from "wagmi";
 import { BrandMark } from "@/components/BrandMark";
 import { ConnectWallet } from "@/components/ConnectWallet";
 import { DocumentIcon } from "@/components/icons";
@@ -16,6 +17,24 @@ export function Dashboard() {
   );
 
   const validAddress = isAddress(claimIssuerAddress) ? (claimIssuerAddress as Hex) : undefined;
+  const { isConnected, chain } = useAccount();
+
+  const bytecodeQuery = useBytecode({
+    address: validAddress,
+    query: { enabled: Boolean(validAddress && isConnected) },
+  });
+  const hasNoCodeOnCurrentChain =
+    Boolean(validAddress) && isConnected && !bytecodeQuery.isLoading && !bytecodeQuery.data;
+
+  const statusLabel = !validAddress
+    ? "En attente"
+    : !isConnected
+      ? "Adresse valide"
+      : bytecodeQuery.isLoading
+        ? "Vérification…"
+        : hasNoCodeOnCurrentChain
+          ? "Introuvable sur ce réseau"
+          : "Contrat détecté";
 
   return (
     <div className="app-shell">
@@ -41,12 +60,12 @@ export function Dashboard() {
             Standard ERC-734 / ERC-735
           </span>
           <h1>
-            Émission de claims d&apos;identité <span className="text-gradient">on-chain</span> pour institutions
-            mondiales
+            Émettre, vérifier, révoquer : l&apos;identité <span className="text-gradient">on-chain</span> à
+            l&apos;échelle des institutions mondiales
           </h1>
           <p>
-            Signez, vérifiez et révoquez des attestations d&apos;identité conformes au standard ONCHAINID, directement
-            depuis un wallet connecté — sans intermédiaire, sans backend de confiance.
+            Un registre de claims d&apos;identité conforme au standard ONCHAINID, gouverné par vos propres clés, sans
+            intermédiaire ni backend de confiance.
           </p>
           <div className="hero-tags">
             <span className="hero-tag">Non custodial</span>
@@ -64,10 +83,10 @@ export function Dashboard() {
               <DocumentIcon />
             </span>
             <h2>Contrat ClaimIssuer</h2>
-            <StatusPill active={Boolean(validAddress)} label={validAddress ? "Contrat détecté" : "En attente"} />
+            <StatusPill active={Boolean(validAddress) && !hasNoCodeOnCurrentChain} label={statusLabel} />
           </div>
           <p className="panel-hint">
-            Renseigne l&apos;adresse du contrat déployé sur le réseau de ton wallet connecté — elle alimente les
+            Renseigne l&apos;adresse du contrat déployé sur le réseau de ton wallet connecté. Elle alimente les
             vérifications et signatures ci-dessous.
           </p>
           <div className="form-grid">
@@ -81,6 +100,12 @@ export function Dashboard() {
             </label>
           </div>
           {claimIssuerAddress && !validAddress && <p className="error-text">Adresse invalide.</p>}
+          {hasNoCodeOnCurrentChain && (
+            <p className="error-text">
+              Aucun contrat trouvé à cette adresse sur {chain?.name ?? "le réseau connecté"}. Vérifie que ton wallet
+              est bien sur le réseau où le ClaimIssuer a été déployé.
+            </p>
+          )}
         </section>
 
         <IssueClaimForm />

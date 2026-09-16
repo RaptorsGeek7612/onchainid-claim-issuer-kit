@@ -1,14 +1,13 @@
 {
   "name": "onchainid-claim-issuer-kit",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "ONCHAINID ClaimIssuer smart contracts (ERC-734/ERC-735), Foundry project.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "forge test"
   },
-  "keywords": [],
+  "keywords": ["onchainid", "erc734", "erc735", "identity"],
   "author": "",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",

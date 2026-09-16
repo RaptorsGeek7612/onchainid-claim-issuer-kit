@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { isAddress, type Hex } from "viem";
-import { useConnection, useSignMessage } from "wagmi";
+import { useAccount, useSignMessage } from "wagmi";
 import { claimDataHash, textToClaimData } from "@/lib/claim";
 import { SignatureIcon } from "@/components/icons";
 
@@ -17,8 +17,8 @@ type ClaimPackage = {
 };
 
 export function IssueClaimForm() {
-  const { address, isConnected } = useConnection();
-  const { mutateAsync: signMessageAsync, isPending } = useSignMessage();
+  const { address, isConnected } = useAccount();
+  const { signMessageAsync, isPending } = useSignMessage();
 
   const [identity, setIdentity] = useState("");
   const [topic, setTopic] = useState("1");

@@ -23,7 +23,7 @@ export function DocumentIcon({ size = 20 }: IconProps) {
 export function SignatureIcon({ size = 20 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
-      <path className="icon-signature-path" d="M4 19c2-3 3-6 4-9 1 3 2 6 4 9 1-2 2-4 3-4s1 2 3 2" />
+      <path d="M4 19c2-3 3-6 4-9 1 3 2 6 4 9 1-2 2-4 3-4s1 2 3 2" />
       <path d="M4 21h16" />
     </svg>
   );
