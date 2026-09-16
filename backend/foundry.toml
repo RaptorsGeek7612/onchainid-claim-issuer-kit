@@ -1,0 +1,11 @@
+[profile.default]
+src = "contracts"
+out = "out"
+libs = ["lib", "node_modules"]
+auto_detect_solc = true
+remappings = [
+    "@onchain-id/solidity/=node_modules/@onchain-id/solidity/",
+    "forge-std/=lib/forge-std/src/",
+]
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

@@ -1,0 +1,14 @@
+# build artifacts
+out/
+cache/
+broadcast/
+
+# dependencies
+node_modules/
+
+# env
+.env
+.env.local
+
+# misc
+.DS_Store
