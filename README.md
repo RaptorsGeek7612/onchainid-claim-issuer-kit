@@ -7,6 +7,11 @@ Kit pour émettre, vérifier et révoquer des claims d'identité conformes au st
 
 Voir le README de chaque dossier pour les instructions de build/dev.
 
+## Déploiement de test
+
+- **Contrat `ClaimIssuer`** sur Sepolia : [`0x53C91c18D5Ad6f5521dE8434094EF7ed482C304a`](https://sepolia.etherscan.io/address/0x53C91c18D5Ad6f5521dE8434094EF7ed482C304a)
+- **Frontend** sur Vercel : https://onchainid-claim-issuer-kit.vercel.app (préconfiguré avec l'adresse ci-dessus)
+
 Le frontend n'utilise que le `localStorage` du navigateur (état de connexion wallet) — aucun cookie tiers ni traqueur.
 
 ## CI
