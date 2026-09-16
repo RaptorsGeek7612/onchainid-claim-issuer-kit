@@ -6,12 +6,14 @@ import { useAccount, useBytecode } from "wagmi";
 import { BrandMark } from "@/components/BrandMark";
 import { ConnectWallet } from "@/components/ConnectWallet";
 import { DocumentIcon } from "@/components/icons";
+import { Guide } from "@/components/Guide";
 import { IssueClaimForm } from "@/components/IssueClaimForm";
 import { NetworkGraphic } from "@/components/NetworkGraphic";
 import { StatusPill } from "@/components/StatusPill";
 import { VerifyRevokeClaim } from "@/components/VerifyRevokeClaim";
 
 export function Dashboard() {
+  const [activeTab, setActiveTab] = useState<"app" | "guide">("app");
   const [claimIssuerAddress, setClaimIssuerAddress] = useState(
     process.env.NEXT_PUBLIC_CLAIM_ISSUER_ADDRESS ?? "",
   );
@@ -76,40 +78,68 @@ export function Dashboard() {
       </section>
 
       <main className="content">
-        <section className="panel">
-          <div className="panel-head">
-            <span className="panel-step">01</span>
-            <span className="panel-icon panel-icon-blue">
-              <DocumentIcon />
-            </span>
-            <h2>Contrat ClaimIssuer</h2>
-            <StatusPill active={Boolean(validAddress) && !hasNoCodeOnCurrentChain} label={statusLabel} />
-          </div>
-          <p className="panel-hint">
-            Renseigne l&apos;adresse du contrat déployé sur le réseau de ton wallet connecté. Elle alimente les
-            vérifications et signatures ci-dessous.
-          </p>
-          <div className="form-grid">
-            <label>
-              Adresse déployée
-              <input
-                value={claimIssuerAddress}
-                onChange={(e) => setClaimIssuerAddress(e.target.value)}
-                placeholder="0x…"
-              />
-            </label>
-          </div>
-          {claimIssuerAddress && !validAddress && <p className="error-text">Adresse invalide.</p>}
-          {hasNoCodeOnCurrentChain && (
-            <p className="error-text">
-              Aucun contrat trouvé à cette adresse sur {chain?.name ?? "le réseau connecté"}. Vérifie que ton wallet
-              est bien sur le réseau où le ClaimIssuer a été déployé.
-            </p>
-          )}
-        </section>
+        <div className="tabs" role="tablist">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "app"}
+            className={`tab ${activeTab === "app" ? "tab-active" : ""}`}
+            onClick={() => setActiveTab("app")}
+          >
+            Application
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "guide"}
+            className={`tab ${activeTab === "guide" ? "tab-active" : ""}`}
+            onClick={() => setActiveTab("guide")}
+          >
+            Guide
+          </button>
+        </div>
 
-        <IssueClaimForm />
-        <VerifyRevokeClaim claimIssuerAddress={validAddress} />
+        {activeTab === "guide" ? (
+          <Guide />
+        ) : (
+          <>
+            <section className="panel">
+              <div className="panel-head">
+                <span className="panel-step">01</span>
+                <span className="panel-icon panel-icon-blue">
+                  <DocumentIcon />
+                </span>
+                <h2>Contrat ClaimIssuer</h2>
+                <StatusPill active={Boolean(validAddress) && !hasNoCodeOnCurrentChain} label={statusLabel} />
+              </div>
+              <p className="panel-hint">
+                Renseigne l&apos;adresse du contrat déployé sur le réseau de ton wallet connecté. Elle alimente les
+                vérifications et signatures ci-dessous. Besoin d&apos;aide ? Consulte l&apos;onglet{" "}
+                <strong>Guide</strong>.
+              </p>
+              <div className="form-grid">
+                <label>
+                  Adresse déployée
+                  <input
+                    value={claimIssuerAddress}
+                    onChange={(e) => setClaimIssuerAddress(e.target.value)}
+                    placeholder="0x…"
+                  />
+                </label>
+              </div>
+              {claimIssuerAddress && !validAddress && <p className="error-text">Adresse invalide.</p>}
+              {hasNoCodeOnCurrentChain && (
+                <p className="error-text">
+                  Aucun contrat trouvé à cette adresse sur {chain?.name ?? "le réseau connecté"}. Vérifie que ton
+                  wallet est bien sur le réseau où le ClaimIssuer a été déployé.
+                </p>
+              )}
+            </section>
+
+            <IssueClaimForm />
+            <VerifyRevokeClaim claimIssuerAddress={validAddress} />
+          </>
+        )}
       </main>
 
       <footer className="footer">

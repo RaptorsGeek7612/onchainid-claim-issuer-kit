@@ -5,14 +5,14 @@ Kit pour émettre, vérifier et révoquer des claims d'identité conformes au st
 - [`backend/`](backend) — contrats Solidity (Foundry), `ClaimIssuer` porté en solc 0.8.35.
 - [`frontend/`](frontend) — interface Next.js + wagmi/viem/RainbowKit pour signer, vérifier et révoquer des claims depuis un wallet connecté.
 
-Voir le README de chaque dossier pour les instructions de build/dev.
+Voir le README de chaque dossier pour les instructions de build/dev, et [`GUIDE.md`](GUIDE.md) pour un guide d'utilisation en 3 étapes (avec exemple concret).
 
 ## Déploiement de test
 
 - **Contrat `ClaimIssuer`** sur Sepolia : [`0x53C91c18D5Ad6f5521dE8434094EF7ed482C304a`](https://sepolia.etherscan.io/address/0x53C91c18D5Ad6f5521dE8434094EF7ed482C304a)
 - **Frontend** sur Vercel : https://onchainid-claim-issuer-kit.vercel.app (préconfiguré avec l'adresse ci-dessus)
 
-Le frontend n'utilise que le `localStorage` du navigateur (état de connexion wallet) — aucun cookie tiers ni traqueur.
+Le frontend n'utilise que le `localStorage` du navigateur (état de connexion wallet). Aucun cookie tiers ni traqueur.
 
 ## CI
 
