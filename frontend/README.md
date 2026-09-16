@@ -22,6 +22,7 @@ pnpm dev
 - Vérification de la validité d'une claim (`isClaimValid`) et de son statut de révocation (`isClaimRevoked`).
 - Détection de réseau incorrect : si l'adresse saisie est valide mais qu'aucun bytecode n'est trouvé sur la chaîne du wallet connecté, un avertissement s'affiche.
 - Révocation d'une claim (`revokeClaimBySignature`), réservée à la clé de management.
+- Consultation des claims d'une identité (`getClaimIdsByTopic` + `getClaim` sur son contrat `Identity`) : lecture seule, aucun wallet requis, avec sélection explicite du réseau à interroger (`BrowseClaims.tsx`).
 - Bandeau d'information sur le stockage local (`CookieNotice.tsx`) : le site n'utilise que le `localStorage` du navigateur (état de connexion wagmi/RainbowKit), aucun cookie tiers ni traqueur.
 
 ### Chaînes prises en charge
