@@ -59,11 +59,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Type-check
-        run: pnpm exec tsc --noEmit
-
       - name: Lint
         run: pnpm run lint
 
       - name: Build
         run: pnpm run build
+
+      - name: Type-check
+        # Next.js generates route/layout prop types (e.g. LayoutProps) on
+        # build, so this must run after `build`, not before it.
+        run: pnpm exec tsc --noEmit
