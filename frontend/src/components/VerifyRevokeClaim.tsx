@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isAddress, isHex, type Hex } from "viem";
 import { useReadContract, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import { claimIssuerAbi } from "@/lib/claimIssuerAbi";
@@ -33,6 +33,17 @@ export function VerifyRevokeClaim({ claimIssuerAddress }: { claimIssuerAddress?:
     args: signature && isHex(signature) ? [signature] : undefined,
     query: { enabled: Boolean(claimIssuerAddress && signature && isHex(signature)) },
   });
+
+  useEffect(() => {
+    if (!isConfirmed) return;
+    isValidQuery.refetch();
+    isRevokedQuery.refetch();
+    // isValidQuery/isRevokedQuery are new objects every render (wagmi's
+    // useReadContract doesn't return a stable reference), so including
+    // them would refetch on every render instead of only after
+    // confirmation. Their .refetch identity is stable enough for this.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConfirmed]);
 
   function prepareArgs(): readonly [Hex, bigint, Hex, Hex] | null {
     setFormError(null);
